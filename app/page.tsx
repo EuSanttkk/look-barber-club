@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { ArrowRight, ArrowUp, Check, ChevronDown, Mail, MapPin, Menu, Phone, X } from "lucide-react";
-import { barberShop, serviceSlots } from "./data";
+import { barberShop, publicReviews, serviceSlots } from "./data";
 
 const navItems = [["Início", "inicio"], ["A Look", "a-look"], ["Serviços", "servicos"], ["Experiência", "experiencia"], ["Instagram", "instagram"], ["Localização", "localizacao"]] as const;
 
@@ -58,7 +58,33 @@ export default function Home() {
 
     <section className="principles-section"><div className="container principles-intro"><Reveal><p className="eyebrow">03 / A EXPERIÊNCIA</p><h2>DO SEU<br />JEITO<span className="wine-dot">.</span></h2></Reveal><p>Um espaço pensado em cada detalhe para o seu momento.</p></div><div className="container principles-grid">{["Ambiente único", "Trabalho em detalhes", "Experiência completa", "Atendimento"].map((item,index) => <Reveal className="principle" key={item}><span>{String(index+1).padStart(2,"0")}</span><p>{item}</p></Reveal>)}</div></section>
 
-    <section className="section social-proof-section"><div className="container two-column"><Reveal><p className="eyebrow">04 / AVALIAÇÕES</p><h2>VEJA O QUE<br />OS CLIENTES<br /><em>DIZEM.</em></h2></Reveal><Reveal className="reviews-placeholder"><span className="quote-mark">“</span><p>As avaliações reais da Look Barber Club poderão ser apresentadas aqui quando o perfil público estiver disponível.</p></Reveal></div></section>
+    <section id="avaliacoes" className="section social-proof-section">
+      <div className="container reviews-head">
+        <Reveal>
+          <p className="eyebrow">04 / AVALIAÇÕES</p>
+          <h2>O QUE OS<br />CLIENTES <em>DIZEM.</em></h2>
+        </Reveal>
+        <Reveal className="review-counts" aria-label={`${publicReviews.reviewCount} avaliações e ${publicReviews.commentCount} comentários públicos`}>
+          <strong>{publicReviews.reviewCount}</strong><span>avaliações<br />públicas</span>
+          <i />
+          <strong>{publicReviews.commentCount}</strong><span>comentários<br />publicados</span>
+        </Reveal>
+      </div>
+      <div className="container reviews-grid">
+        {publicReviews.items.map((review, index) => <Reveal className="review-card" key={`${review.author}-${index}`}>
+          <div className="review-top"><span>“</span><small>{String(index + 1).padStart(2, "0")}</small></div>
+          <blockquote>{review.text}</blockquote>
+          <p>{review.author}</p>
+        </Reveal>)}
+      </div>
+      <div className="container reviews-footer">
+        <p>Trechos de avaliações públicas. A fonte consultada não informa a nota individual de cada comentário.</p>
+        <div>
+          <a className="source-link" href={publicReviews.sourceUrl} target="_blank" rel="noopener noreferrer">CONSULTAR FONTE</a>
+          <a className="button button-review" href={barberShop.reviewsUrl} target="_blank" rel="noopener noreferrer">VER TODAS AS AVALIAÇÕES <ArrowRight size={17} /></a>
+        </div>
+      </div>
+    </section>
 
     <section id="instagram" className="section instagram-section"><div className="container instagram-grid"><Reveal className="instagram-copy"><p className="eyebrow">05 / INSTAGRAM</p><h2>SIGA<br />A LOOK</h2><p>{barberShop.instagramHandle}</p><a className="button button-outline" href={barberShop.instagramUrl} target="_blank" rel="noopener noreferrer"><span aria-hidden="true">@</span> VER INSTAGRAM</a></Reveal><Reveal className="instagram-art"><div className="insta-word">LOOK</div><Image src="/logo-look.jpg" alt="Look Barber Club no Instagram" width={520} height={517} /><span>ACOMPANHE A LOOK</span></Reveal></div></section>
 
