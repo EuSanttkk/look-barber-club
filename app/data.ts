@@ -18,24 +18,6 @@ export const barberShop = {
   ],
 } as const;
 
-export type GalleryItem = {
-  id: number;
-  category: "Cortes" | "Barba" | "Ambiente" | "Equipe";
-  title: string;
-  src: string | null;
-  ratio: "portrait" | "landscape" | "square" | "tall";
-};
-
-// Substitua `null` pelo caminho das fotografias reais, por exemplo: "/images/corte-01.webp".
-export const galleryItems: GalleryItem[] = [
-  { id: 1, category: "Ambiente", title: "Ambiente Look", src: null, ratio: "tall" },
-  { id: 2, category: "Cortes", title: "Corte masculino", src: null, ratio: "landscape" },
-  { id: 3, category: "Equipe", title: "Profissional em ação", src: null, ratio: "square" },
-  { id: 4, category: "Barba", title: "Cuidados com a barba", src: null, ratio: "portrait" },
-  { id: 5, category: "Cortes", title: "Detalhes do corte", src: null, ratio: "square" },
-  { id: 6, category: "Ambiente", title: "Detalhes da barbearia", src: null, ratio: "landscape" },
-];
-
 export const serviceSlots = [
   { name: "Corte", description: "Opções e disponibilidade no agendamento." },
   { name: "Barba", description: "Opções e disponibilidade no agendamento." },
